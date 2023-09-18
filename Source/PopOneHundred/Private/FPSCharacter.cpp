@@ -43,7 +43,10 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	if(UEnhancedInputComponent* enhancedInputComp = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
 		enhancedInputComp->BindAction(m_look, ETriggerEvent::Triggered, this, &AFPSCharacter::Look);
+		enhancedInputComp->BindAction(m_shoot, ETriggerEvent::Started, this, &AFPSCharacter::Shoot);
+	}
 }
 
 void AFPSCharacter::Look(const FInputActionValue& value)
@@ -56,5 +59,28 @@ void AFPSCharacter::Look(const FInputActionValue& value)
 		AddControllerPitchInput(look.Y);
 	}
 }
+
+void AFPSCharacter::Shoot()
+{
+	UE_LOG(LogTemp, Display, TEXT("Player Shot"));
+
+	m_worldRef = GetWorld();
+
+	FVector location;
+	FRotator rotation;
+	FHitResult hitResult;
+	FVector end = location + rotation.Vector() * distance;
+
+	bool bIsHit = GetWorld()->LineTraceSingleByChannel(hitResult, location, end, ECC_GameTraceChannel1);
+
+	if(bIsHit)
+	{
+		FVector shotDirection = rotation.Vector();
+		DrawDebugPoint(GetWorld(), hitResult.Location, 20, FColor::Green, false, 3.0f);
+		DrawDebugLine(GetWorld(), location, hitResult.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
+		UE_LOG(LogTemp, Warning, TEXT("Hit something!"));
+	}
+}
+
 
 
