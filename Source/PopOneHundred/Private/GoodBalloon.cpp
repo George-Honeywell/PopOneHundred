@@ -29,6 +29,5 @@ void AGoodBalloon::BeginPlay()
 void AGoodBalloon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
