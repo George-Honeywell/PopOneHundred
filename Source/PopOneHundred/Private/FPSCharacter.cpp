@@ -5,6 +5,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Components/CapsuleComponent.h"
+#include "Logging/StructuredLog.h"
 
 // Sets default values
 AFPSCharacter::AFPSCharacter()
@@ -18,6 +19,10 @@ AFPSCharacter::AFPSCharacter()
 	m_cameraComp->SetupAttachment(GetCapsuleComponent());
 	m_cameraComp->SetRelativeLocation(FVector(-10.0f, 0.0f, 60.0f));
 	m_cameraComp->bUsePawnControlRotation = true;
+
+	m_shootFrom = CreateDefaultSubobject<USceneComponent>(TEXT("Shoot Point"));
+	m_shootFrom->SetRelativeLocation(FVector(100.0f, 0.0f, 0.0f));
+	m_shootFrom->AttachToComponent(m_cameraComp, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -66,8 +71,9 @@ void AFPSCharacter::Shoot()
 
 	m_worldRef = GetWorld();
 
-	FVector location;
-	FRotator rotation;
+	//FVector location = GetActorLocation() + 50;
+	FVector location = m_shootFrom->GetComponentLocation();
+	FRotator rotation = GetControlRotation();
 	FHitResult hitResult;
 	FVector end = location + rotation.Vector() * distance;
 
@@ -75,10 +81,11 @@ void AFPSCharacter::Shoot()
 
 	if(bIsHit)
 	{
+		AActor* hitActor = hitResult.GetActor();
 		FVector shotDirection = rotation.Vector();
 		DrawDebugPoint(GetWorld(), hitResult.Location, 20, FColor::Green, false, 3.0f);
 		DrawDebugLine(GetWorld(), location, hitResult.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
-		UE_LOG(LogTemp, Warning, TEXT("Hit something!"));
+		UE_LOGFMT(LogTemp, Log, "Hit {0}", *hitActor->GetName());
 	}
 }
 

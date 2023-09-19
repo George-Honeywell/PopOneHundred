@@ -31,6 +31,9 @@ public:
 	class UInputAction* m_shoot = nullptr;
 	void Shoot();
 
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent* m_shootFrom;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
