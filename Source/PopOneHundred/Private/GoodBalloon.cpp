@@ -5,6 +5,8 @@
 
 #include <ImportExport.h>
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AGoodBalloon::AGoodBalloon()
 {
@@ -29,5 +31,17 @@ void AGoodBalloon::BeginPlay()
 void AGoodBalloon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+float AGoodBalloon::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	const float damageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	m_health -= damageToApply;
+
+	if(m_burstSound)
+		UGameplayStatics::PlaySoundAtLocation(this, m_burstSound, GetActorLocation());
+	
+	Destroy();
+	return damageToApply;
 }
 

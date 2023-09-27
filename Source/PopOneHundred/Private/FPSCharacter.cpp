@@ -4,6 +4,7 @@
 #include "FPSCharacter.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Engine/DamageEvents.h"
 #include "Components/CapsuleComponent.h"
 #include "Logging/StructuredLog.h"
 
@@ -86,6 +87,12 @@ void AFPSCharacter::Shoot()
 		DrawDebugPoint(GetWorld(), hitResult.Location, 20, FColor::Green, false, 3.0f);
 		DrawDebugLine(GetWorld(), location, hitResult.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 		UE_LOGFMT(LogTemp, Log, "Hit {0}", *hitActor->GetName());
+
+		if(hitActor != nullptr)
+		{
+			FPointDamageEvent damageEvent(m_power, hitResult, shotDirection, nullptr);
+			hitResult.GetActor()->TakeDamage(m_power, damageEvent, GetController(), this);
+		}
 	}
 }
 

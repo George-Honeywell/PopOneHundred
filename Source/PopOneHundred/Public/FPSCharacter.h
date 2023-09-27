@@ -48,6 +48,7 @@ private:
 	UWorld* m_worldRef;
 
 	float distance = 5000.0f;
+	const float m_power = 1.0f;
 
 
 };

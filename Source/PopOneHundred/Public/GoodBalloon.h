@@ -31,4 +31,15 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Actor Defaults")
 	UBoxComponent* m_actorCollision;
+
+	UPROPERTY(EditAnywhere, Category = Sounds)
+	USoundBase* m_burstSound = nullptr;
+	
+	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+private:
+	float m_health = 1.0f;
+
+
+	
 };
