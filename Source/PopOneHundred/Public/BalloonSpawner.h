@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BadBalloon.h"
 #include "GoodBalloon.h"
 #include "GameFramework/Actor.h"
 #include "BalloonSpawner.generated.h"
@@ -21,13 +22,22 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AGoodBalloon> m_balloonClass;
+	TSubclassOf<AGoodBalloon> m_goodBalloonClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ABadBalloon> m_badBalloonClass;
 
 	UPROPERTY(EditDefaultsOnly)
 	UBoxComponent* m_boxComponent;
 	
 	UPROPERTY()
-	AGoodBalloon* m_balloon;
+	AGoodBalloon* m_goodBalloon;
+
+	UPROPERTY()
+	ABadBalloon* m_badBalloon;
+
+	uint8 m_numOfGoodBalloons{0};
+	uint8 m_numOfBadBalloons{0};
 
 public:	
 	// Called every frame

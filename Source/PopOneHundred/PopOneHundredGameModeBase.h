@@ -13,7 +13,9 @@ class POPONEHUNDRED_API APopOneHundredGameModeBase : public AGameModeBase
 
 public:
 	APopOneHundredGameModeBase();
-	
+
+	uint8 m_numOfGoodBalloons{0};
+	uint8 m_numOfBadBalloons{0};
 private:
 	virtual void BeginPlay() override;
 };

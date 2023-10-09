@@ -20,4 +20,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
 		TSubclassOf<class UUserWidget> m_aimDot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
+		TSubclassOf<class UUserWidget> m_scoreBoard;
 };

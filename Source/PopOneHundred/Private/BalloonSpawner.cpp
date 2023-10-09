@@ -3,6 +3,8 @@
 
 #include "BalloonSpawner.h"
 
+#include "Logging/StructuredLog.h"
+
 // Sets default values
 ABalloonSpawner::ABalloonSpawner()
 {
@@ -18,10 +20,26 @@ void ABalloonSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
+	const float rand = FMath::RandRange(1, 100);
+	UE_LOGFMT(LogTemp, Log, "RandRange is {0}", rand);
+
+	if(rand >= 10)
+	{
+		m_goodBalloon = GetWorld()->SpawnActor<AGoodBalloon>(m_goodBalloonClass);
+		m_goodBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+		m_goodBalloon->SetOwner(this);
+		m_numOfGoodBalloons++;
+	}
+	else
+	{
+		m_badBalloon = GetWorld()->SpawnActor<ABadBalloon>(m_badBalloonClass);
+		m_badBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+		m_badBalloon->SetOwner(this);
+		m_numOfBadBalloons++;
+	}
 	
-	m_balloon = GetWorld()->SpawnActor<AGoodBalloon>(m_balloonClass);
-	m_balloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	m_balloon->SetOwner(this);
+	UE_LOGFMT(LogTemp, Log, "Number of Good Balloons Spawned: {0}", m_numOfGoodBalloons);
+	UE_LOGFMT(LogTemp, Log, "Number of Bad Balloons Spawned: {0}", m_numOfGoodBalloons);
 	
 }
 
