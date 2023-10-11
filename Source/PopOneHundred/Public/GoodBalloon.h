@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FPSPlayerController.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "GoodBalloon.generated.h"
@@ -23,9 +24,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	//UPROPERTY(VisibleAnywhere, Category = "Actor Defaults")
-	//USceneComponent* RootComponent;
-
 	UPROPERTY(EditAnywhere, Category = "Actor Defaults")
 	UStaticMeshComponent* m_actorMesh = nullptr;
 
@@ -39,7 +37,5 @@ protected:
 
 private:
 	float m_health = 1.0f;
-
-
-	
+	uint8 test{0};
 };

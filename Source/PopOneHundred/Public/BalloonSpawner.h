@@ -6,6 +6,8 @@
 #include "BadBalloon.h"
 #include "GoodBalloon.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/GameplayStatics.h"
+#include "PopOneHundred/PopOneHundredGameModeBase.h"
 #include "BalloonSpawner.generated.h"
 
 UCLASS()
@@ -36,8 +38,7 @@ protected:
 	UPROPERTY()
 	ABadBalloon* m_badBalloon;
 
-	uint8 m_numOfGoodBalloons{0};
-	uint8 m_numOfBadBalloons{0};
+	AFPSCharacter* m_fpsCharacter = nullptr;
 
 public:	
 	// Called every frame

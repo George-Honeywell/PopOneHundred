@@ -2,7 +2,10 @@
 
 
 #include "GoodBalloon.h"
+
+#include "SWarningOrErrorBox.h"
 #include "Kismet/GameplayStatics.h"
+#include "Logging/StructuredLog.h"
 
 // Sets default values
 AGoodBalloon::AGoodBalloon()
@@ -22,6 +25,8 @@ AGoodBalloon::AGoodBalloon()
 void AGoodBalloon::BeginPlay()
 {
 	Super::BeginPlay();
+	test++;
+	UE_LOGFMT(LogTemp, Warning, "Test: {0}", test);
 }
 
 // Called every frame
