@@ -18,6 +18,9 @@ void ABalloonSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
+	m_goodBalloon = GetWorld()->SpawnActor<AGoodBalloon>(m_goodBalloonClass);
+	m_goodBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
 }
 
 // Called every frame

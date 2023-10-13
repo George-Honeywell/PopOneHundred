@@ -21,7 +21,7 @@ void ABalloonSpawnerManager::BeginPlay()
 	spawnParams.Owner = this;
 	spawnParams.Name = TEXT("BalloonSpawner");
 
-	const FVector spawnLoc = FVector(50.0f, 50.0f, 50.0f);
+	const FVector spawnLoc = FVector(715.f, -1.0f, 250.0f);
 	const FRotator spawnRot = GetActorRotation();
 
 	m_balloonSpawner = GetWorld()->SpawnActor<ABalloonSpawner>(m_balloonSpawnerClass, spawnLoc, spawnRot, spawnParams);
