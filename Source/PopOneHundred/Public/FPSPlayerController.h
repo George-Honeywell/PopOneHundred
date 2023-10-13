@@ -23,8 +23,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
 		TSubclassOf<class UUserWidget> m_scoreBoard;
-
-public:
-	uint8 m_numOfGoodBalloons{0};
-	uint8 m_numOfBadBalloons{0};
+	
 };

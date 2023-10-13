@@ -2,6 +2,7 @@
 
 
 #include "BalloonSpawnerManager.h"
+#include "BalloonSpawner.h"
 
 // Sets default values
 ABalloonSpawnerManager::ABalloonSpawnerManager()
@@ -15,7 +16,15 @@ ABalloonSpawnerManager::ABalloonSpawnerManager()
 void ABalloonSpawnerManager::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	FActorSpawnParameters spawnParams = FActorSpawnParameters();
+	spawnParams.Owner = this;
+	spawnParams.Name = TEXT("BalloonSpawner");
+
+	const FVector spawnLoc = FVector(50.0f, 50.0f, 50.0f);
+	const FRotator spawnRot = GetActorRotation();
+
+	m_balloonSpawner = GetWorld()->SpawnActor<ABalloonSpawner>(m_balloonSpawnerClass, spawnLoc, spawnRot, spawnParams);
 }
 
 // Called every frame

@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "BalloonSpawnerManager.generated.h"
 
+class ABalloonSpawner;
+
 UCLASS()
 class POPONEHUNDRED_API ABalloonSpawnerManager : public AActor
 {
@@ -15,12 +17,27 @@ public:
 	// Sets default values for this actor's properties
 	ABalloonSpawnerManager();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 m_numOfGoodBalloons{0};
+
+	UPROPERTY(BlueprintReadOnly)
+	int32 m_numOfBadBalloons{0};
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<ABalloonSpawner> m_balloonSpawnerClass;
+
+	UPROPERTY()
+	ABalloonSpawner* m_balloonSpawner;
+	
+
+private:
+	UWorld* m_worldRef = nullptr;
 
 };

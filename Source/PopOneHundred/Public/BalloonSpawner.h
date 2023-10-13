@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "BadBalloon.h"
+#include "BalloonSpawnerManager.h"
 #include "GoodBalloon.h"
 #include "GameFramework/Actor.h"
-#include "Kismet/GameplayStatics.h"
-#include "PopOneHundred/PopOneHundredGameModeBase.h"
 #include "BalloonSpawner.generated.h"
 
 UCLASS()
@@ -38,7 +37,8 @@ protected:
 	UPROPERTY()
 	ABadBalloon* m_badBalloon;
 
-	AFPSCharacter* m_fpsCharacter = nullptr;
+	UPROPERTY(EditDefaultsOnly)
+	ABalloonSpawnerManager* m_balloonSpawnerManager;
 
 public:	
 	// Called every frame

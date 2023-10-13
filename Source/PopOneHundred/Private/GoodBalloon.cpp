@@ -2,10 +2,10 @@
 
 
 #include "GoodBalloon.h"
-
-#include "SWarningOrErrorBox.h"
+#include "BalloonSpawnerManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "Logging/StructuredLog.h"
+#include "WorldPartition/ContentBundle/ContentBundleLog.h"
 
 // Sets default values
 AGoodBalloon::AGoodBalloon()
@@ -19,14 +19,13 @@ AGoodBalloon::AGoodBalloon()
 	m_actorCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Component"));
 	m_actorCollision->SetupAttachment(m_actorMesh);
 	m_actorCollision->SetBoxExtent(FVector(50.0f, 50.0f, 50.0f));
+	
 }
 
 // Called when the game starts or when spawned
 void AGoodBalloon::BeginPlay()
 {
 	Super::BeginPlay();
-	test++;
-	UE_LOGFMT(LogTemp, Warning, "Test: {0}", test);
 }
 
 // Called every frame
@@ -44,5 +43,7 @@ float AGoodBalloon::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 		UGameplayStatics::PlaySoundAtLocation(this, m_burstSound, GetActorLocation());
 	
 	Destroy();
+	m_balloonSpawnerManager->m_numOfGoodBalloons--;
+	UE_LOGFMT(LogTemp, Display, "Number of Good Balloons left: {0}", m_balloonSpawnerManager->m_numOfGoodBalloons);
 	return damageToApply;
 }

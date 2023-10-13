@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BalloonSpawnerManager.h"
 #include "FPSPlayerController.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
@@ -35,7 +36,8 @@ protected:
 	
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
+	ABalloonSpawnerManager* m_balloonSpawnerManager = nullptr;
+
 private:
 	float m_health = 1.0f;
-	uint8 test{0};
 };

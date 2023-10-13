@@ -39,12 +39,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UPROPERTY(BlueprintReadOnly)
-	uint8 m_numOfGoodBalloons{0};
-
-	UPROPERTY(BlueprintReadOnly)
-	uint8 m_numOfBadBalloons{0};
 	
 protected:
 	// Called when the game starts or when spawned
