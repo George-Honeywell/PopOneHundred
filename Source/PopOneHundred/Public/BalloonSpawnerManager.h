@@ -41,6 +41,7 @@ protected:
 	TArray<AActor*> m_arrBalloonSpawners;
 
 	// Default values for Spawners to spawn at
+	// Values are set in BP_BalloonSpawnerManager
 	UPROPERTY(EditAnywhere)
 	double xPos = 0;
 
@@ -51,6 +52,7 @@ protected:
 	double zPos = 0;
 
 	// Offset the spawners to spawn in a grid
+	// Values are set in BP_BalloonSpawnerManager
 	UPROPERTY(EditAnywhere)
 	double offsetXPos = 0;
 

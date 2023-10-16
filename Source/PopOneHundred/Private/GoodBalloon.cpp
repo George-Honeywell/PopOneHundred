@@ -43,7 +43,5 @@ float AGoodBalloon::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 		UGameplayStatics::PlaySoundAtLocation(this, m_burstSound, GetActorLocation());
 	
 	Destroy();
-	//m_balloon
-	//UE_LOGFMT(LogTemp, Display, "Number of Good Balloons left: {0}", m_balloonSpawnerManager->m_numOfGoodBalloons);
 	return damageToApply;
 }

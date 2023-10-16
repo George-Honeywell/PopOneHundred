@@ -71,8 +71,7 @@ void AFPSCharacter::Shoot()
 	UE_LOG(LogTemp, Display, TEXT("Player Shot"));
 
 	m_worldRef = GetWorld();
-
-	//FVector location = GetActorLocation() + 50;
+	
 	FVector location = m_shootFrom->GetComponentLocation();
 	FRotator rotation = GetControlRotation();
 	FHitResult hitResult;
@@ -88,7 +87,7 @@ void AFPSCharacter::Shoot()
 		DrawDebugLine(GetWorld(), location, hitResult.Location, FColor::Red, false, 3.0f, 0.0f, 2.0f);
 		UE_LOGFMT(LogTemp, Log, "Hit {0}", *hitActor->GetName());
 
-		if(hitActor != nullptr)
+		if(hitActor)
 		{
 			FPointDamageEvent damageEvent(m_power, hitResult, shotDirection, nullptr);
 			hitResult.GetActor()->TakeDamage(m_power, damageEvent, GetController(), this);
