@@ -26,6 +26,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	int32 m_numOfBadBalloons{0};
 
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -35,9 +36,30 @@ protected:
 
 	UPROPERTY()
 	ABalloonSpawner* m_balloonSpawner;
-	
 
-private:
-	UWorld* m_worldRef = nullptr;
+	UPROPERTY()
+	TArray<AActor*> m_arrBalloonSpawners;
+
+	// Default values for Spawners to spawn at
+	UPROPERTY(EditAnywhere)
+	double xPos = 0;
+
+	UPROPERTY(EditAnywhere)
+	double yPos = 0;
+
+	UPROPERTY(EditAnywhere)
+	double zPos = 0;
+
+	// Offset the spawners to spawn in a grid
+	UPROPERTY(EditAnywhere)
+	double offsetXPos = 0;
+
+	UPROPERTY(EditAnywhere)
+	double offsetYPos = 0;
+
+	UPROPERTY(EditAnywhere)
+	double offsetZPos = 0;
+
+	
 
 };

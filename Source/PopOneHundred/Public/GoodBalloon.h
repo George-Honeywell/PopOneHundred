@@ -36,7 +36,8 @@ protected:
 	
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
-	ABalloonSpawnerManager* m_balloonSpawnerManager = nullptr;
+	UPROPERTY()
+	ABalloonSpawnerManager* m_balloonSpawnerManager;
 
 private:
 	float m_health = 1.0f;

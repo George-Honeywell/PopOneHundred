@@ -11,6 +11,7 @@ ABalloonSpawner::ABalloonSpawner()
 
 	m_boxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("Box Component"));
 	RootComponent = m_boxComponent;
+	m_boxComponent->SetBoxExtent(FVector(10,10,10));
 }
 
 // Called when the game starts or when spawned
@@ -20,7 +21,6 @@ void ABalloonSpawner::BeginPlay()
 
 	m_goodBalloon = GetWorld()->SpawnActor<AGoodBalloon>(m_goodBalloonClass);
 	m_goodBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
-
 }
 
 // Called every frame
