@@ -23,5 +23,14 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
 		TSubclassOf<class UUserWidget> m_scoreBoard;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
+		TSubclassOf<class UUserWidget> m_gameOver;
+
+	UFUNCTION()
+	virtual void GameHasEnded(AActor* EndGameFocus, bool bIsWinner) override;
+
+public:
+	UPROPERTY(BlueprintReadOnly)
+	int32 m_numOfBalloonsPopped{0};
 };

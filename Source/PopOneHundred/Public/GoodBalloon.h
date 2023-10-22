@@ -25,19 +25,25 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere, Category = "Actor Defaults")
+	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* m_actorMesh = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Actor Defaults")
+	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* m_actorCollision;
 
-	UPROPERTY(EditAnywhere, Category = Sounds)
+	UPROPERTY(EditAnywhere)
 	USoundBase* m_burstSound = nullptr;
 	
 	virtual float TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	UPROPERTY()
 	ABalloonSpawnerManager* m_balloonSpawnerManager;
+
+	UPROPERTY()
+	APawn* m_fpsCharacter = nullptr;
+
+	UPROPERTY(EditAnywhere)
+	AFPSPlayerController* m_characterController = nullptr;
 
 private:
 	float m_health = 1.0f;

@@ -3,7 +3,7 @@
 
 #include "BalloonSpawnerManager.h"
 #include "BalloonSpawner.h"
-#include "Logging/StructuredLog.h"
+
 
 // Sets default values
 ABalloonSpawnerManager::ABalloonSpawnerManager()
@@ -16,7 +16,8 @@ ABalloonSpawnerManager::ABalloonSpawnerManager()
 // Called when the game starts or when spawned
 void ABalloonSpawnerManager::BeginPlay()
 {
-
+	Super::BeginPlay();
+	
 	for(int i = 0; i < 10; i++)
 	{
 		for(int j = 0; j < 10; j++)
@@ -25,7 +26,6 @@ void ABalloonSpawnerManager::BeginPlay()
 			const FRotator spawnRot = FRotator(0,0,0);
 			AActor* spawnersToAdd = Cast<ABalloonSpawner>(m_balloonSpawnerClass); // TODO: Investigate this line of code, seems to take about a second to step over. Potential optimizations needed
 			m_arrBalloonSpawners.Add(spawnersToAdd);
-			m_numOfGoodBalloons++;
 
 			m_arrBalloonSpawners[i] = GetWorld()->SpawnActor<ABalloonSpawner>(m_balloonSpawnerClass, spawnLoc, spawnRot);
 			zPos -= offsetZPos;

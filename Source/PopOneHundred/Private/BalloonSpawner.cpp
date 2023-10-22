@@ -2,7 +2,7 @@
 
 
 #include "BalloonSpawner.h"
-#include "Logging/StructuredLog.h"
+#include "Kismet/GameplayStatics.h"
 
 ABalloonSpawner::ABalloonSpawner()
 {
@@ -19,8 +19,22 @@ void ABalloonSpawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	m_goodBalloon = GetWorld()->SpawnActor<AGoodBalloon>(m_goodBalloonClass);
-	m_goodBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	AActor* spawner = UGameplayStatics::GetActorOfClass(GetWorld(), ABalloonSpawnerManager::StaticClass());
+	m_balloonSpawnerManager = Cast<ABalloonSpawnerManager>(spawner);
+
+	const int rand = FMath::RandRange(1, 100);
+	if(rand >= 10)
+	{
+		m_goodBalloon = GetWorld()->SpawnActor<AGoodBalloon>(m_goodBalloonClass);
+		m_goodBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+		m_balloonSpawnerManager->m_numOfGoodBalloons++;
+	}
+	else
+	{
+		m_badBalloon = GetWorld()->SpawnActor<ABadBalloon>(m_badBalloonClass);
+		m_badBalloon->AttachToComponent(m_boxComponent, FAttachmentTransformRules::KeepRelativeTransform);
+		m_balloonSpawnerManager->m_numOfBadBalloons++;
+	}
 }
 
 // Called every frame

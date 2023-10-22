@@ -4,6 +4,7 @@
 #include "FPSPlayerController.h"
 
 #include "Blueprint/UserWidget.h"
+#include "Kismet/GameplayStatics.h"
 
 void AFPSPlayerController::BeginPlay()
 {
@@ -17,4 +18,16 @@ void AFPSPlayerController::BeginPlay()
 
 	if(UUserWidget* scoreBoard = CreateWidget(this, m_scoreBoard))
 		scoreBoard->AddToViewport();
+}
+
+void AFPSPlayerController::GameHasEnded(AActor* EndGameFocus, bool bIsWinner)
+{
+	if(UUserWidget* gameOver = CreateWidget(this, m_gameOver))
+	{
+		gameOver->AddToViewport();
+		UGameplayStatics::SetGamePaused(GetWorld(), true);
+		bShowMouseCursor = true;
+		bEnableClickEvents = true;
+		bEnableMouseOverEvents = true;
+	}
 }
