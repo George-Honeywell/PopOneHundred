@@ -22,9 +22,6 @@ protected:
 		TSubclassOf<class UUserWidget> m_aimDot;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
-		TSubclassOf<class UUserWidget> m_scoreBoard;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = PlayerHUD)
 		TSubclassOf<class UUserWidget> m_gameOver;
 
 	UFUNCTION()

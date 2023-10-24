@@ -16,8 +16,8 @@ void AFPSPlayerController::BeginPlay()
 	if(UUserWidget* aimDot = CreateWidget(this, m_aimDot))
 		aimDot->AddToViewport();
 
-	if(UUserWidget* scoreBoard = CreateWidget(this, m_scoreBoard))
-		scoreBoard->AddToViewport();
+	// if(UUserWidget* scoreBoard = CreateWidget(this, m_scoreBoard))
+	// 	scoreBoard->AddToViewport();
 }
 
 void AFPSPlayerController::GameHasEnded(AActor* EndGameFocus, bool bIsWinner)
