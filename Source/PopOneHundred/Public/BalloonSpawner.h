@@ -37,7 +37,7 @@ protected:
 	UPROPERTY()
 	ABadBalloon* m_badBalloon;
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY()
 	ABalloonSpawnerManager* m_balloonSpawnerManager;
 
 public:	
